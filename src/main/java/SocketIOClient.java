@@ -6,8 +6,9 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 
 public class SocketIOClient {
-    Socket sock = IO.socket("http://smart.sum.ba/parking-events");
+    DBConnection dbConnection = new DBConnection();
 
+    Socket sock = IO.socket("http://smart.sum.ba/parking-events");
     public SocketIOClient() throws URISyntaxException {
         sock.on("parking-lot-state-change", new Emitter.Listener() {
             @Override
@@ -15,6 +16,7 @@ public class SocketIOClient {
                 JSONObject obj = (JSONObject)objects[0];
                 System.out.println(obj);
             }
+
         });
     }
 

@@ -1,11 +1,20 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
+import org.json.JSONObject;
+
+import java.sql.*;
 
 public class DBConnection {
+
+
+    public void connect() {
+        {
+            try {
+               Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartSUM", "root", "");
+                System.out.println("Connected to database!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }
