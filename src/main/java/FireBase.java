@@ -33,7 +33,7 @@ public class FireBase {
         if(!hasBeenInitialized) {
           FirebaseApp.initializeApp(options);
         }
-        
+
 
         ps = FirebaseDatabase.getInstance().getReference("parkingSpaces");
 
