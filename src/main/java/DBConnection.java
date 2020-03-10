@@ -2,6 +2,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class DBConnection {
 
@@ -54,7 +55,7 @@ public class DBConnection {
             preparedStatement.setInt(11,occupied);
 
             preparedStatement.executeUpdate();
-            System.out.println("Database updated!");
+            System.out.println("Database updated! @" + LocalDateTime.now());
 
         } catch (SQLException | JSONException e) {
             e.printStackTrace();
