@@ -18,11 +18,10 @@ public class SocketIOClient {
             @Override
             public void call(Object... objects) {
                 JSONObject obj = (JSONObject) objects[0];
-                System.out.println(obj);
                 try {
                     fireBase.connectFB();
                     fireBase.updateFB(obj);
-                } catch (IOException | JSONException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
 

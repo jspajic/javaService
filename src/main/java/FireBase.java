@@ -7,9 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class FireBase {
-    DatabaseReference ps;
+    private DatabaseReference ps;
 
     public void connectFB() throws IOException {
 
@@ -20,7 +21,19 @@ public class FireBase {
                 .setDatabaseUrl("https://smartsumparking.firebaseio.com")
                 .build();
 
-        FirebaseApp.initializeApp(options);
+        boolean hasBeenInitialized=false;
+
+        List<FirebaseApp> firebaseApps = FirebaseApp.getApps();
+        for(FirebaseApp app : firebaseApps){
+            if(app.getName().equals(FirebaseApp.DEFAULT_APP_NAME)){
+                hasBeenInitialized=true;
+            }
+        }
+
+        if(!hasBeenInitialized) {
+          FirebaseApp.initializeApp(options);
+        }
+        
 
         ps = FirebaseDatabase.getInstance().getReference("parkingSpaces");
 
