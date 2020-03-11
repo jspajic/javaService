@@ -1,8 +1,8 @@
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 
 public class DBConnection {
 
@@ -13,8 +13,6 @@ public class DBConnection {
         {
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://51.89.124.88:3306/smartSUM", "root", "pyKEQR6L802w");
-
-                System.out.println("Connected");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -47,18 +45,17 @@ public class DBConnection {
             preparedStatement.setInt(1, id_parking_lot);
             preparedStatement.setInt(2, normal_occupied);
             preparedStatement.setInt(3, handicap_occupied);
-            preparedStatement.setInt(4,handicap_available);
-            preparedStatement.setInt(5,id_parking_space);
-            preparedStatement.setString(6,created_at);
-            preparedStatement.setInt(7,normal_available);
-            preparedStatement.setString(8,type);
+            preparedStatement.setInt(4, handicap_available);
+            preparedStatement.setInt(5, id_parking_space);
+            preparedStatement.setString(6, created_at);
+            preparedStatement.setInt(7, normal_available);
+            preparedStatement.setString(8, type);
             preparedStatement.setString(9, parking_space_name);
-            preparedStatement.setInt(10,id_parking_lot_type);
-            preparedStatement.setInt(11,occupied);
+            preparedStatement.setInt(10, id_parking_lot_type);
+            preparedStatement.setInt(11, occupied);
 
             preparedStatement.executeUpdate();
-            System.out.println("Database updated! @" + LocalDateTime.now());
-
+            Logger.info("Database updated");
         } catch (SQLException | JSONException e) {
             e.printStackTrace();
         }
