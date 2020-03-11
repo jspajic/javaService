@@ -35,14 +35,14 @@ public class FireBase {
         }
 
 
-        ps = FirebaseDatabase.getInstance().getReference("parkingSpaces");
+        ps = FirebaseDatabase.getInstance().getReference("0").child("parking");
 
     }
 
     public void updateFB(JSONObject... objects) throws JSONException {
         JSONObject obj = (JSONObject) objects[0];
 
-        DatabaseReference parking = ps.child(obj.getString("id_parking_space"));
+        DatabaseReference parking = ps.child(obj.getString("id_parking_lot")).child("parkingSpaces").child(obj.getString("id_parking_space"));
         parking.child("occupied").setValueAsync(obj.getString("occupied"));
         parking.child("last_event").setValueAsync(obj.getString("created_at"));
         parking.child("updated_at").setValueAsync(obj.getString("created_at"));
