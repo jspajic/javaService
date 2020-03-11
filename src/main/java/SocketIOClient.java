@@ -17,6 +17,7 @@ public class SocketIOClient {
             @Override
             public void call(Object... objects) {
                 JSONObject obj = (JSONObject) objects[0];
+
                 try {
                     fireBase.connectFB();
                     fireBase.updateFB(obj);

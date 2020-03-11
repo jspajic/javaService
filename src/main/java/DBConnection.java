@@ -12,7 +12,9 @@ public class DBConnection {
     public void connect() {
         {
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartSUM", "root", "");
+                connection = DriverManager.getConnection("jdbc:mysql://51.89.124.88:3306/smartSUM", "root", "pyKEQR6L802w");
+
+                System.out.println("Connected");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -23,7 +25,7 @@ public class DBConnection {
 
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO parking_spaces" +
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO parking_events" +
                     " (id_parking_lot,normal_occupied,handicap_occupied,handicap_available,id_parking_space," +
                     "created_at,normal_available,type,parking_space_name,id_parking_lot_type,occupied)" +
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
