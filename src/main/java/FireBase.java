@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class FireBase {
-    private DatabaseReference ps;
+    private DatabaseReference parking1;
+    private DatabaseReference parkingSpaces;
 
     public void connectFB() throws IOException {
 
@@ -31,18 +32,23 @@ public class FireBase {
         }
 
         if(!hasBeenInitialized) {
-          FirebaseApp.initializeApp(options);
+            FirebaseApp.initializeApp(options);
         }
 
 
-        ps = FirebaseDatabase.getInstance().getReference("0").child("parking");
+        parking1 = FirebaseDatabase.getInstance().getReference("0");
+        parkingSpaces = parking1.child("parkingSpaces");
 
     }
 
     public void updateFB(JSONObject... objects) throws JSONException {
         JSONObject obj = (JSONObject) objects[0];
 
-        DatabaseReference parking = ps.child(obj.getString("id_parking_lot")).child("parkingSpaces").child(obj.getString("id_parking_space"));
+        System.out.println(obj);
+
+        parking1.child("normal_available").setValueAsync(obj.getString("normal_available"));
+
+        DatabaseReference parking = parkingSpaces.child(String.valueOf(obj.getInt("id_parking_space") - 1));
         parking.child("occupied").setValueAsync(obj.getString("occupied"));
         parking.child("last_event").setValueAsync(obj.getString("created_at"));
         parking.child("updated_at").setValueAsync(obj.getString("created_at"));
