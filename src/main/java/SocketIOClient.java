@@ -3,6 +3,8 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -17,13 +19,13 @@ public class SocketIOClient {
             @Override
             public void call(Object... objects) {
                 JSONObject obj = (JSONObject) objects[0];
+
                 try {
                     fireBase.connectFB();
                     fireBase.updateFB(obj);
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
-
                 dbConnection.connect();
                 dbConnection.saveToDatabase(obj);
             }
@@ -33,5 +35,6 @@ public class SocketIOClient {
 
     public void connect() {
         sock.connect();
+        Logger.info("Socket connected!");
     }
 }

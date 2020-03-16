@@ -15,7 +15,7 @@ public class FireBase {
 
     public void connectFB() throws IOException {
 
-        FileInputStream serviceAccount = new FileInputStream("/home/jozo/IdeaProjects/saveToMYSQL/smartsumparking-firebase-adminsdk-1zr0m-8f10f99874.json");
+        FileInputStream serviceAccount = new FileInputStream("C:\\Users\\jozo\\Desktop\\saveToMYSQL\\smartsumparking-firebase-adminsdk-1zr0m-8f10f99874.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
